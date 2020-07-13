@@ -1,4 +1,12 @@
-### Hi there 👋
+### Hi there 👋 I'm Lucas Fonseca 
+
+
+[![Github Badge](https://img.shields.io/badge/-Github-000?logo=Github&logoColor=white&link=https://github.com/lucasfonmiranda)](https://github.com/lucasfonmiranda)
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lucasfonmiranda/)](https://www.linkedin.com/in/lucasfonmiranda/)
+
+A **Head of Engineering** at [**Kovi** 🚘](https://www.kovi.com.br/)! I've been working with Data Science and Machine Learning for more than 12 years. 
+
+
 
 <!--
 **lucasfonmiranda/lucasfonmiranda** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
