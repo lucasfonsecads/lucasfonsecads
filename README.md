@@ -6,7 +6,7 @@
 **Head of Engineering** at [**Kovi** 🚘](https://www.kovi.com.br/)! I've been working with Data Science and Machine Learning for more than 12 years. 
 
 - :computer: working remotely;
-- :weight_lifter: love all sports;
+- :surfer: love all sports;
 - :heart: all technologies;
 
 
