@@ -3,7 +3,7 @@
 [![Github Badge](https://img.shields.io/badge/-Github-000?logo=Github&logoColor=white&link=https://github.com/lucasfonmiranda)](https://github.com/lucasfonmiranda)
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lucasfonmiranda/)](https://www.linkedin.com/in/lucasfonmiranda/)
 
-**Head of Engineering** at [**Kovi** 🚘](https://www.kovi.com.br/)! I've been working with Data Science and Machine Learning for more than 12 years. 
+**Head of Engineering** at [**Kovi** 🚘](https://www.kovi.com.br/) I've been working with Data Science and Machine Learning for more than 12 years. 
 
 - :computer: working remotely;
 - :surfer: love all sports;
