@@ -13,7 +13,7 @@ from io import BytesIO
 from bizdays import Calendar
 import os
 
-# bucket = Variable.get('BUCKET')
+bucket = Variable.get('BUCKET')
 
 URL = Variable.get('URL_SP')
 
