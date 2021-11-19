@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 
 state = 'SP'
 
+
 week = 0
 
 default_args = {
