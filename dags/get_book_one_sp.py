@@ -96,12 +96,12 @@ def get_folder_s3(week, ti):
     # week-2-book_1/5 books
     print('Get actual week number')
     # Create a client
-    # client = boto3.client('s3',
-    #                       aws_access_key_id=Variable.get('AWS_ACCESS_KEY_ID'),
-    #                       aws_secret_access_key=Variable.get('AWS_SECRET_ACCESS_KEY'))
+    client = boto3.client('s3',
+                          aws_access_key_id=Variable.get('AWS_ACCESS_KEY_ID'),
+                          aws_secret_access_key=Variable.get('AWS_SECRET_ACCESS_KEY'))
     #
     # # Create a reusable Paginator
-    # paginator = client.get_paginator('list_objects')
+    paginator = client.get_paginator('list_objects')
     #
     # # Create a PageIterator from the Paginator
     page_iterator = paginator.paginate(Bucket=bucket, PaginationConfig={'MaxItems': 10})
