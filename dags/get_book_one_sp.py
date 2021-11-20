@@ -78,7 +78,9 @@ def upload_file(file_name, bucket, ti, object_name):
 
 def get_book(ti):
     logger.info('Start request: {}'.format(str(datetime.now())))
+    test_valeu = ti.xcom_pull(key='week_period', task_ids='get_week_period')
 
+    print('test value: {}'.format(test_valeu))
     receive = requests.get('{}?dtDiario=27/02/2020&cdCaderno=11'.format(URL))
 
     print("Request completed in {0:.2f} s".format(receive.elapsed.total_seconds()))
@@ -141,7 +143,7 @@ sensor = ExternalTaskSensor(
     task_id='sensor',
     dag=dag,
     external_dag_id='get_work_period_week',
-    external_task_id=' No images to push',
+    external_task_id='get_week_period',
     poke_interval=30
 )
 
