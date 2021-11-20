@@ -104,7 +104,7 @@ def get_folder_s3(week, ti):
     # paginator = client.get_paginator('list_objects')
     #
     # # Create a PageIterator from the Paginator
-    # page_iterator = paginator.paginate(Bucket=bucket, PaginationConfig={'MaxItems': 10})
+    page_iterator = paginator.paginate(Bucket=bucket, PaginationConfig={'MaxItems': 10})
 
     # get_last_modified = lambda obj: int(obj['LastModified'].strftime('%s'))
     all_data = []
