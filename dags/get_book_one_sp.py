@@ -4,6 +4,7 @@ import boto3
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.sensors.external_task_sensor import ExternalTaskSensor
+from airflow.hooks.postgres_hook import PostgresHook
 from airflow.sensors.python import PythonSensor
 from airflow.models import Variable
 from botocore.exceptions import ClientError
@@ -22,7 +23,6 @@ cal = Calendar(weekdays=['Sunday', 'Saturday'])
 logger = logging.getLogger(__name__)
 
 state = 'SP'
-
 
 week = 0
 
@@ -47,8 +47,9 @@ TO DO LIST:
 
 """
 
+
 # Upload files to s3
-def upload_file(file_name, bucket, ti, object_name):
+def upload_file(file_name, bucket, week, object_name):
     """Upload a file to an S3 bucket
     :param file_name: File to upload
     :param bucket: Bucket to upload to
@@ -56,7 +57,6 @@ def upload_file(file_name, bucket, ti, object_name):
     :return: True if file was uploaded, else False
     """
     # the name of file need to be 2021-11-02.pdf
-    week = ti.xcom_pull(key='actual_week', task_ids='get_folder_s3')
     new_object_name = 'week-{0}-{1}/{2}'.format(week, state, object_name)
 
     # Upload the file
@@ -71,80 +71,52 @@ def upload_file(file_name, bucket, ti, object_name):
         return False
     return True
 
-    week_list = week_list[::-1]
+    return {
+        "message": "Book saved"
+    }
 
-    return week_list
+def get_last_week_record():
+    postgres_hook = PostgresHook(postgres_conn_id='airflow')
+    pg_conn = postgres_hook.get_conn()
+    cursor = pg_conn.cursor()
+
+    cursor.execute("SELECT * FROM week_period ORDER BY 1 DESC LIMIT 1;")
+    record_data = cursor.fetchall()
+
+    for i in record_data:
+        week_number = i[2]
+        week_period = i[3]
+
+    pg_conn.commit()
+
+    return week_number, week_period
 
 
-def get_book(ti):
-    logger.info('Start request: {}'.format(str(datetime.now())))
-    test_valeu = ti.xcom_pull(key='week_period', task_ids='get_week_period')
 
-    print('test value: {}'.format(test_valeu))
-    receive = requests.get('{}?dtDiario=27/02/2020&cdCaderno=11'.format(URL))
+def get_book():
 
-    print("Request completed in {0:.2f} s".format(receive.elapsed.total_seconds()))
-    fileobject = BytesIO(receive.content)
-    name_object = 'pdf.pdf'
-    print('File created: {}'.format(str(name_object)))
-    upload_file(fileobject, bucket, ti, object_name=name_object)
+    week_number, week_period = get_last_week_record()
 
-    print('Request book:  | AT: {}'.format(str(datetime.now())))
+    print(type(week_period))
 
-
-# Get folder name
-def get_folder_s3(week, ti):
-    # week-1-book_1/5 books -> change pdf file in csv file
-    # week-2-book_1/5 books
-    print('Get actual week number')
-    # Create a client
-    client = boto3.client('s3',
-                          aws_access_key_id=Variable.get('AWS_ACCESS_KEY_ID'),
-                          aws_secret_access_key=Variable.get('AWS_SECRET_ACCESS_KEY'))
+    # logger.info('Start request: {}'.format(str(datetime.now())))
     #
-    # # Create a reusable Paginator
-    paginator = client.get_paginator('list_objects')
+    # receive = requests.get('{}?dtDiario=27/02/2020&cdCaderno=11'.format(URL))
     #
-    # # Create a PageIterator from the Paginator
-    page_iterator = paginator.paginate(Bucket=bucket, PaginationConfig={'MaxItems': 10})
-
-    # get_last_modified = lambda obj: int(obj['LastModified'].strftime('%s'))
-    all_data = []
-
-    filtered_iterator = page_iterator.search("Contents[?Size > `36600`][]")
-    for key_data in filtered_iterator:
-        all_data = [key_data]
-
-    week_name = all_data[0]['Key']
-    actual_week_number = int(week_name.split("/")[0].split("-")[1])
-    print('Actual week is: {}'.format(actual_week_number))
-
-    actual_week = actual_week_number
-    ti.xcom_push(key='actual_week', value=actual_week)
-    return actual_week_number
+    # print("Request completed in {0:.2f} s".format(receive.elapsed.total_seconds()))
+    # fileobject = BytesIO(receive.content)
+    # name_object = 'pdf.pdf'
+    # print('File created: {}'.format(str(name_object)))
+    #
+    # upload_file(fileobject, bucket, ti, object_name=name_object)
+    #
+    # print('Request book:  | AT: {}'.format(str(datetime.now())))
 
 
 t1 = PythonOperator(
     task_id='get_book',
     dag=dag,
-    python_callable=get_book,
-    op_kwargs={'week': week}
+    python_callable=get_book
 )
 
-t2 = PythonOperator(
-    task_id='get_folder_s3',
-    dag=dag,
-    python_callable=get_folder_s3,
-    op_kwargs={'week': week}
-
-)
-
-sensor = ExternalTaskSensor(
-    task_id='sensor',
-    dag=dag,
-    external_dag_id='get_work_period_week',
-    external_task_id='get_week_period',
-    poke_interval=30
-)
-
-t2 >> t1
+t1
