@@ -1,2 +1,2 @@
 release: airflow db init
-web: airflow variables import variables.json && airflow users create --username admin --firstname Admin --password adminMaster --lastname Admin --role Admin --email admin@lucasfonmiranda.com && airflow webserver -p $PORT --daemon && airflow scheduler
+web: airflow variables import variables.json && airflow webserver -p $PORT --daemon && airflow scheduler
