@@ -14,7 +14,7 @@ default_args = {
 }
 
 with DAG(
-        'show_xcom_data',
+        'create_and_create_database',
         default_args=default_args,
         description='Get period of work week',
         catchup=False,
@@ -27,7 +27,7 @@ with DAG(
         week_id SERIAL PRIMARY KEY,
         week_name VARCHAR NOT NULL,
         week_number INT NOT NULL,
-        week_period VARCHAR NOT NULL,
+        week_period jsonb NOT NULL,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW());
         """,
     )

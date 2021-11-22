@@ -9,6 +9,7 @@ from airflow.sensors.python import PythonSensor
 from airflow.models import Variable
 from botocore.exceptions import ClientError
 import requests
+import time
 from datetime import datetime, timedelta
 from io import BytesIO
 from bizdays import Calendar
@@ -33,19 +34,11 @@ default_args = {
     'provide_context': True
 }
 
-dag = DAG('get_data_from_tjsp',
-          description='Dag TJSP - Book One',
+dag = DAG('get_data_book_4',
+          description='Dag TJSP - Book Four',
           schedule_interval=None,
           catchup=False,
           default_args=default_args)
-
-"""
-TO DO LIST:
-- [] Save 5 books in S3
-- [] Save the books with correct name
-- [] Send the event
-
-"""
 
 
 # Upload files to s3
@@ -57,7 +50,7 @@ def upload_file(file_name, bucket, week, object_name):
     :return: True if file was uploaded, else False
     """
     # the name of file need to be 2021-11-02.pdf
-    new_object_name = 'week-{0}-{1}/{2}'.format(week, state, object_name)
+    new_object_name = 'week-{0}-{1}-book-4/{2}'.format(week, state, object_name)
 
     # Upload the file
     s3_client = boto3.client('s3',
@@ -71,9 +64,10 @@ def upload_file(file_name, bucket, week, object_name):
         return False
     return True
 
-    return {
-        "message": "Book saved"
-    }
+    return ({
+        'statusCode': 200,
+        'message': 'Upload book in to S3'
+    })
 
 def get_last_week_record():
     postgres_hook = PostgresHook(postgres_conn_id='airflow')
@@ -97,20 +91,28 @@ def get_book():
 
     week_number, week_period = get_last_week_record()
 
-    print(type(week_period))
 
-    # logger.info('Start request: {}'.format(str(datetime.now())))
-    #
-    # receive = requests.get('{}?dtDiario=27/02/2020&cdCaderno=11'.format(URL))
-    #
-    # print("Request completed in {0:.2f} s".format(receive.elapsed.total_seconds()))
-    # fileobject = BytesIO(receive.content)
-    # name_object = 'pdf.pdf'
-    # print('File created: {}'.format(str(name_object)))
-    #
-    # upload_file(fileobject, bucket, ti, object_name=name_object)
-    #
-    # print('Request book:  | AT: {}'.format(str(datetime.now())))
+    logger.info('Start request: {}'.format(str(datetime.now())))
+
+    try:
+        control = 0
+        for control in range(len(week_period)):
+            print('Start process to get book number: {0} | At: {1}'.format(control, str(datetime.now())))
+            response = requests.get('{0}?dtDiario={1}&cdCaderno=18'.format(URL, week_period[control]))
+            # Need to fix time request completed
+            _start = time.time()
+            print("Request completed in {0:.2f} s".format(response.elapsed.total_seconds()))
+            fileobject = BytesIO(response.content)
+            name_object = '{}.pdf'.format(str(week_period[control]))
+            print('File created: {}'.format(str(name_object)))
+            upload_file(fileobject, bucket, week_number, object_name=name_object)
+            control = + 1
+        print('Request book: {} END | AT: {}'.format(week_number, str(datetime.now())))
+    except ValueError as err:
+        return {
+            'statusCode': 400,
+            'body': json.dumps(err)}
+
 
 
 t1 = PythonOperator(

@@ -19,7 +19,8 @@ default_args = {
     'owner': 'fonseca',
     'start_date': datetime(2020, 5, 20),
     'depends_on_past': False,
-    'provide_context': True
+    'provide_context': True,
+    'schedule_interval': '00**0',
 }
 
 def record_data_on_postgress(new_week_number, new_week):
@@ -31,7 +32,7 @@ def record_data_on_postgress(new_week_number, new_week):
     week_number = new_week_number
     week_period = new_week
 
-    cursor.execute("INSERT INTO week_period ( week_name, week_number, week_period) VALUES ( %s, %s, %s)", [week_name, week_number, str(week_period)])
+    cursor.execute("INSERT INTO week_period ( week_name, week_number, week_period) VALUES ( %s, %s, %s)", [week_name, week_number, json.dumps(week_period)])
     pg_conn.commit()
 
     return {
@@ -96,7 +97,9 @@ def get_week_period(**context):
     ti = context['task_instance']
 
     new_week = week_list[::-1]
-    new_week_number = get_folder_s3()
+    actual_week_number = get_folder_s3()
+
+    new_week_number = int(actual_week_number) + 1
 
     record_data = record_data_on_postgress(new_week_number, new_week)
 
