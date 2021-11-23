@@ -14,6 +14,7 @@ from datetime import datetime, timedelta
 from io import BytesIO
 from bizdays import Calendar
 import os
+import json
 
 bucket = Variable.get('BUCKET')
 
@@ -106,7 +107,6 @@ def get_book():
             name_object = '{}.pdf'.format(str(week_period[control]))
             print('File created: {}'.format(str(name_object)))
             upload_file(fileobject, bucket, week_number, object_name=name_object)
-            fileobject.flush()
             control = + 1
         print('Request book: {} END | AT: {}'.format(week_number, str(datetime.now())))
     except ValueError as err:
