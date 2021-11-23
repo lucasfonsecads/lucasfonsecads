@@ -27,12 +27,12 @@ def delete_empty_files():
     paginator = client.get_paginator('list_objects')
 
     # Create a PageIterator from the Paginator
-    page_iterator = paginator.paginate(Bucket=bucket, PaginationConfig={'MaxItems': 10})
+    page_iterator = paginator.paginate(Bucket=bucket, PaginationConfig={'MaxItems': 1000})
 
     s3 = boto3.resource('s3')
 
 
-    filtered_iterator = page_iterator.search("Contents[?Size < `37600`][]")
+    filtered_iterator = page_iterator.search("Contents[?Size < `38600`][]")
 
     for key_data in filtered_iterator:
         all_data = [key_data]
