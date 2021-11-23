@@ -105,7 +105,7 @@ def get_book():
             fileobject = BytesIO(response.content)
             name_object = '{}.pdf'.format(str(week_period[control]))
             print('File created: {}'.format(str(name_object)))
-            upload_file(fileobject, bucket, week_number, object_name=name_object)
+            # upload_file(fileobject, bucket, week_number, object_name=name_object)
             control = + 1
         print('Request book: {} END | AT: {}'.format(week_number, str(datetime.now())))
     except ValueError as err:
