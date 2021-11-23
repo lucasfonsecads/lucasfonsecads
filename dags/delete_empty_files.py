@@ -17,6 +17,9 @@ default_args = {
     'schedule_interval': '00***',
 }
 
+"""
+Need to check if we can check folder per folder for a better performance, and reduce number of consults in Paginator object
+"""
 
 def delete_empty_files():
     client = boto3.client('s3',
@@ -50,6 +53,7 @@ with DAG(
     description='Job to delete empty files from S3',
     catchup=False
     )as dag:
+
     remove_empty_files = PythonOperator(
         task_id='remove_empty_files',
         python_callable=delete_empty_files,
