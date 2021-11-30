@@ -91,7 +91,6 @@ def get_book():
 
     week_number, week_period = get_last_week_record()
 
-
     logger.info('Start request: {}'.format(str(datetime.now())))
 
     try:
