@@ -3,11 +3,13 @@
 [![Github Badge](https://img.shields.io/badge/-Github-000?logo=Github&logoColor=white&link=https://github.com/lucasfonmiranda)](https://github.com/lucasfonmiranda)
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lucasfonmiranda/)](https://www.linkedin.com/in/lucasfonmiranda/)
 
-I've been working with Data Science and Machine Learning for more than 12 years. 
+I've been working with Data Science, Machine Learning and Software development for more than 12 years. 
 
+- 🔭 I’m currently working on Rain Instant Pay
 - :computer: working remotely;
 - :surfer: love all sports;
 - :heart: all technologies;
+- 📫 How to reach me: https://lucasfonmiranda.com
 
 
 
