@@ -5,11 +5,11 @@
 
 I've been working with Data Science, Machine Learning and Software development for more than 12 years. 
 
-- 🔭 I’m currently working on Rain Instant Pay
+- 🔭 I’m currently working on [Rain Instant Pay](https://rain.us/)
 - :computer: working remotely;
 - :surfer: love all sports;
 - :heart: all technologies;
-- 📫 How to reach me: https://lucasfonmiranda.com
+- 📫 How to reach me: [Personal Site](https://lucasfonmiranda.com)
 
 
 
