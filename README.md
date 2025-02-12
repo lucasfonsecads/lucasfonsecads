@@ -3,7 +3,7 @@
 [![Github Badge](https://img.shields.io/badge/-Github-000?logo=Github&logoColor=white&link=https://github.com/lucasfonsecads)](https://github.com/lucasfonmiranda)
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lucasfonmiranda/)](https://www.linkedin.com/in/lucasfonmiranda/)
 
-I've been working with Data Science, Machine Learning and Software development for more than 13 years. 
+I've been working with Data Science, Machine Learning and Data Engineering for more than 15 years. 
 
 - :computer: working remotely;
 - :surfer: love all sports;
