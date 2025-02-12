@@ -1,15 +1,13 @@
 # Hi there 👋 I'm Lucas Fonseca 
 
-[![Github Badge](https://img.shields.io/badge/-Github-000?logo=Github&logoColor=white&link=https://github.com/lucasfonmiranda)](https://github.com/lucasfonmiranda)
+[![Github Badge](https://img.shields.io/badge/-Github-000?logo=Github&logoColor=white&link=https://github.com/lucasfonsecads)](https://github.com/lucasfonmiranda)
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lucasfonmiranda/)](https://www.linkedin.com/in/lucasfonmiranda/)
 
 I've been working with Data Science, Machine Learning and Software development for more than 13 years. 
 
-- 🔭 I’m currently working on [Rain Instant Pay](https://rain.us/)
 - :computer: working remotely;
 - :surfer: love all sports;
 - :heart: all technologies;
-- 📫 How to reach me: [Personal Site](https://lucasfonmiranda.com)
 
 
 
@@ -29,6 +27,6 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=lucasfonmiranda&count_private=true&theme=dark)
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=lucasfonsecads&count_private=true&theme=dark)
 
-![](https://komarev.com/ghpvc/?username=lucasfonmiranda&label=PROFILE+VIEWS)
+![](https://komarev.com/ghpvc/?username=lucasfonsecads&label=PROFILE+VIEWS)
