@@ -5,7 +5,7 @@
 
 I've been working with Data Science, Machine Learning and Data Engineering for more than 15 years. 
 
-- :computer: working remotely at [ReplicatsAI](https://github.com/replicatsai);
+- :computer: working remotely at;
 - :surfer: love all sports;
 - :heart: all technologies;
 
