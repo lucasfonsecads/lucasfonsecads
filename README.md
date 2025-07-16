@@ -2,6 +2,7 @@
 <div align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=00BFFF&center=true&vCenter=true&width=500&lines=Head+of+Data+@+Replicats+AI;Machine+Learning+Expert;AI+Infrastructure;Data+Engineering+Enthusiast;Real-time+Crypto+Forecast+Pipelines;Builder+of+Scalable+AI+Data+Architectures" alt="Typing SVG" />
 </div>
+
 [![Github Badge](https://img.shields.io/badge/-Github-000?logo=Github&logoColor=white&link=https://github.com/lucasfonsecads)](https://github.com/lucasfonmiranda)
 [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/lucasfonmiranda/)](https://www.linkedin.com/in/lucasfonmiranda/)
 [![Medium Badge](https://img.shields.io/badge/-Medium-12100E?logo=medium&logoColor=white&link=https://medium.com/@lucas-fonseca-ds)](https://medium.com/@lucas-fonseca-ds)
